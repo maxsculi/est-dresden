@@ -1,0 +1,1291 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Sculi Solutions × EST Dresden — Pitch Deck</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0b0c0e;
+    --bg-2: #121418;
+    --surface: #16191e;
+    --border: #262a31;
+    --border-strong: #3a3f48;
+    --fg: #f4f4f2;
+    --fg-muted: #a6abb3;
+    --fg-dim: #6e7480;
+    --accent: #e3b01e;
+    --accent-ink: #0b0c0e;
+
+    --font-display: "Space Grotesk", sans-serif;
+    --font-body: "Inter", sans-serif;
+    --font-mono: "JetBrains Mono", monospace;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #000; font-family: var(--font-body); color: var(--fg); }
+
+  deck-stage section {
+    background: var(--bg);
+    color: var(--fg);
+    padding: 80px 96px;
+    display: flex;
+    flex-direction: column;
+    font-size: 24px;
+    line-height: 1.4;
+  }
+
+  /* Shared typography */
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 16px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--fg-muted);
+    display: inline-flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .eyebrow::before {
+    content: ""; width: 48px; height: 1px; background: var(--accent);
+  }
+  .eyebrow.solo::before { display: none; }
+
+  h1.display, h2.display, h3.display {
+    font-family: var(--font-display);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 0.98;
+    color: var(--fg);
+  }
+  h1.display { font-size: 120px; }
+  h2.display { font-size: 84px; line-height: 1; }
+  h3.display { font-size: 48px; line-height: 1.05; }
+
+  .lede { font-size: 28px; color: var(--fg-muted); line-height: 1.45; max-width: 36ch; }
+
+  .footer-bar {
+    position: absolute;
+    bottom: 40px; left: 96px; right: 96px;
+    display: flex;
+    justify-content: space-between;
+    font-family: var(--font-mono);
+    font-size: 14px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--fg-dim);
+  }
+
+  .mono { font-family: var(--font-mono); font-size: 14px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--fg-dim); }
+
+  /* ============ Slide 01 — Title ============ */
+  .slide-title {
+    justify-content: space-between;
+    position: relative;
+    background:
+      radial-gradient(ellipse at 80% 20%, rgba(227,176,30,0.12), transparent 60%),
+      var(--bg);
+  }
+  .slide-title-mark {
+    font-family: var(--font-mono);
+    font-size: 16px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--fg-muted);
+  }
+  .slide-title h1 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 156px;
+    line-height: 0.95;
+    letter-spacing: -0.03em;
+  }
+  .slide-title h1 em {
+    font-style: normal;
+    color: var(--accent);
+  }
+  .slide-title-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    gap: 48px;
+    margin-top: 48px;
+  }
+  .slide-title-sub {
+    font-size: 28px;
+    color: var(--fg-muted);
+    max-width: 36ch;
+    line-height: 1.4;
+  }
+
+  /* ============ Slide 02 — Agenda ============ */
+  .slide-agenda { gap: 48px; }
+  .agenda-list {
+    display: grid;
+    grid-template-columns: 80px 1fr 220px;
+    gap: 0;
+    margin-top: 32px;
+    border-top: 1px solid var(--border);
+  }
+  .agenda-list > * {
+    padding: 32px 0;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+  }
+  .agenda-num {
+    font-family: var(--font-mono);
+    font-size: 18px;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+  }
+  .agenda-title {
+    font-family: var(--font-display);
+    font-size: 40px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+  .agenda-meta {
+    font-family: var(--font-mono);
+    font-size: 14px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--fg-dim);
+    justify-content: flex-end;
+  }
+
+  /* ============ Slide 03 — Status Quo ============ */
+  .slide-status { gap: 40px; }
+  .status-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    margin-top: 32px;
+    flex: 1;
+  }
+  .status-col {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .status-col h4 {
+    font-family: var(--font-mono);
+    font-size: 14px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--fg-dim);
+  }
+  .status-col h3 {
+    font-family: var(--font-display);
+    font-size: 36px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    line-height: 1.1;
+  }
+  .status-col.current h3 { color: var(--fg); }
+  .status-col.future h3 { color: var(--accent); }
+  .status-col ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-top: auto;
+  }
+  .status-col ul li {
+    font-size: 18px;
+    color: var(--fg-muted);
+    line-height: 1.45;
+    padding-left: 24px;
+    position: relative;
+  }
+  .status-col.current ul li::before {
+    content: "×";
+    position: absolute; left: 0; top: 0;
+    color: #6e7480;
+    font-weight: 600;
+  }
+  .status-col.future ul li::before {
+    content: "→";
+    position: absolute; left: 0; top: 0;
+    color: var(--accent);
+    font-weight: 600;
+  }
+
+  /* ============ Slide 04 — Website Vorschlag ============ */
+  .slide-website {
+    padding: 0;
+    background: #000;
+  }
+  .slide-website-head {
+    padding: 80px 96px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    gap: 48px;
+  }
+  .slide-website-head h2 { max-width: 18ch; }
+  .slide-website-head p { font-size: 20px; color: var(--fg-muted); max-width: 36ch; line-height: 1.45; }
+  .website-preview {
+    flex: 1;
+    background: var(--bg-2);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 40px 96px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    align-items: stretch;
+  }
+  .preview-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    aspect-ratio: 3/4;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    color: inherit;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .preview-link { cursor: pointer; }
+  .preview-link:hover { border-color: var(--accent); transform: translateY(-4px); }
+  .preview-link:hover .preview-caption em { color: var(--accent); }
+  .preview-card-bar {
+    height: 28px;
+    background: #000;
+    display: flex;
+    align-items: center;
+    padding: 0 12px;
+    gap: 6px;
+    border-bottom: 1px solid var(--border);
+  }
+  .preview-card-bar span {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--border-strong);
+  }
+  .preview-card-body {
+    flex: 1;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    font-size: 11px;
+  }
+  .preview-hero {
+    flex: 1;
+    background:
+      linear-gradient(135deg, var(--bg-2) 0%, var(--bg) 100%);
+    border: 1px solid var(--border);
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    padding: 16px;
+    min-height: 120px;
+  }
+  .preview-hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: repeating-linear-gradient(45deg, transparent 0 8px, rgba(255,255,255,0.02) 8px 9px);
+  }
+  .preview-hero-text {
+    font-family: var(--font-display);
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.1;
+    color: var(--fg);
+    position: relative;
+  }
+  .preview-hero-text em { color: var(--accent); font-style: normal; }
+  .preview-blocks {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4px;
+    height: 32px;
+  }
+  .preview-blocks > div {
+    background: var(--bg-2);
+    border: 1px solid var(--border);
+  }
+  .preview-label {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--fg-dim);
+  }
+  .preview-caption {
+    padding: 16px 20px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  .preview-caption span { color: var(--fg); }
+  .preview-caption em { color: var(--accent); font-style: normal; }
+  .slide-website-foot {
+    padding: 32px 96px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: var(--font-mono);
+    font-size: 14px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--fg-dim);
+  }
+  .slide-website-foot strong { color: var(--accent); font-weight: 500; }
+
+  /* ============ Slide 05 — SEO ============ */
+  .slide-seo { gap: 32px; }
+  .seo-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 48px;
+    flex: 1;
+    margin-top: 16px;
+  }
+  .seo-main {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+  .seo-pillars {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  .seo-pillar {
+    padding: 24px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .seo-pillar-num {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--accent);
+    letter-spacing: 0.14em;
+  }
+  .seo-pillar-title {
+    font-family: var(--font-display);
+    font-size: 22px;
+    font-weight: 600;
+  }
+  .seo-pillar-desc {
+    font-size: 15px;
+    color: var(--fg-muted);
+    line-height: 1.45;
+  }
+  .seo-side {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .seo-side h4 {
+    font-family: var(--font-mono);
+    font-size: 14px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--fg-dim);
+  }
+  .keyword-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+  .keyword-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .keyword-row:last-child { border-bottom: none; }
+  .keyword-row .kw {
+    font-family: var(--font-body);
+    font-size: 17px;
+    color: var(--fg);
+  }
+  .keyword-row .badge {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 4px 8px;
+    border: 1px solid var(--accent);
+    color: var(--accent);
+  }
+
+  /* ============ Slide 06 — Meta Ads ============ */
+  .slide-meta { gap: 32px; }
+  .meta-layout {
+    display: grid;
+    grid-template-columns: 1fr 380px;
+    gap: 48px;
+    flex: 1;
+    align-items: start;
+    margin-top: 16px;
+  }
+  .meta-strategy {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .meta-strategy h3 {
+    font-family: var(--font-display);
+    font-size: 32px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    max-width: 18ch;
+  }
+  .meta-funnel {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 8px;
+  }
+  .funnel-step {
+    display: grid;
+    grid-template-columns: 40px 1fr;
+    gap: 16px;
+    padding: 18px 20px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    align-items: center;
+  }
+  .funnel-step-num {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: var(--accent);
+  }
+  .funnel-step-title {
+    font-family: var(--font-display);
+    font-size: 18px;
+    font-weight: 600;
+  }
+  .funnel-step-desc {
+    font-size: 14px;
+    color: var(--fg-muted);
+    margin-top: 2px;
+    line-height: 1.4;
+  }
+
+  /* Instagram-style Ad mockup */
+  .ad-phone {
+    width: 100%;
+    aspect-ratio: 9/16;
+    background: #000;
+    border: 12px solid #1a1a1a;
+    border-radius: 32px;
+    box-shadow: 0 24px 60px rgba(0,0,0,0.4), inset 0 0 0 1px #2a2a2a;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+  .ad-header {
+    padding: 14px 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #000;
+    border-bottom: 1px solid #222;
+  }
+  .ad-avatar {
+    width: 32px; height: 32px;
+    background: var(--accent);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 13px;
+    color: var(--accent-ink);
+    font-family: var(--font-display);
+  }
+  .ad-handle-stack { display: flex; flex-direction: column; line-height: 1.2; }
+  .ad-handle { font-size: 12px; color: #fff; font-weight: 600; }
+  .ad-sponsored { font-size: 10px; color: #888; }
+  .ad-more { margin-left: auto; color: #fff; font-size: 18px; line-height: 1; }
+  .ad-visual {
+    flex: 1;
+    background:
+      radial-gradient(circle at 70% 30%, rgba(227,176,30,0.35), transparent 60%),
+      linear-gradient(180deg, #1a1d22 0%, #0b0c0e 100%);
+    position: relative;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden;
+  }
+  .ad-visual::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: repeating-linear-gradient(45deg, transparent 0 10px, rgba(255,255,255,0.03) 10px 11px);
+  }
+  .ad-visual-top {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .ad-visual-kicker {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+  .ad-visual-headline {
+    font-family: var(--font-display);
+    font-size: 26px;
+    font-weight: 700;
+    line-height: 1;
+    color: #fff;
+    letter-spacing: -0.02em;
+  }
+  .ad-visual-bottom {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .ad-visual-sub {
+    font-size: 11px;
+    color: #c4c8d0;
+    line-height: 1.4;
+    max-width: 22ch;
+  }
+  .ad-visual-chip {
+    display: inline-flex;
+    width: fit-content;
+    padding: 5px 10px;
+    background: var(--accent);
+    color: var(--accent-ink);
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+  .ad-cta {
+    padding: 12px 14px;
+    background: #000;
+    border-top: 1px solid #222;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .ad-cta-left { display: flex; flex-direction: column; line-height: 1.2; }
+  .ad-cta-title { font-size: 11px; color: #fff; font-weight: 600; }
+  .ad-cta-desc { font-size: 10px; color: #888; }
+  .ad-cta-btn {
+    padding: 8px 12px;
+    background: #fff;
+    color: #000;
+    font-size: 11px;
+    font-weight: 600;
+    border-radius: 2px;
+    font-family: var(--font-body);
+  }
+
+  /* ============ Slide 07 — Social ============ */
+  .slide-social { gap: 32px; }
+  .social-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 24px;
+    flex: 1;
+    margin-top: 16px;
+  }
+  .social-col {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .social-col h4 {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+  .social-col h3 {
+    font-family: var(--font-display);
+    font-size: 28px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    line-height: 1.1;
+  }
+  .social-col p {
+    font-size: 15px;
+    color: var(--fg-muted);
+    line-height: 1.5;
+  }
+  .social-col ul {
+    list-style: none;
+    margin-top: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding-top: 16px;
+    border-top: 1px solid var(--border);
+  }
+  .social-col ul li {
+    font-size: 14px;
+    color: var(--fg);
+    padding-left: 20px;
+    position: relative;
+  }
+  .social-col ul li::before {
+    content: "—";
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+  }
+
+  /* ============ Slide 08 — Pakete ============ */
+  .slide-packages { gap: 32px; }
+  .package-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    flex: 1;
+    margin-top: 24px;
+  }
+  .package {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 40px 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    position: relative;
+  }
+  .package.featured {
+    background: var(--accent);
+    color: var(--accent-ink);
+    border-color: var(--accent);
+  }
+  .package-badge {
+    position: absolute;
+    top: -12px;
+    left: 32px;
+    background: var(--bg);
+    color: var(--accent);
+    padding: 4px 12px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    border: 1px solid var(--accent);
+  }
+  .package h4 {
+    font-family: var(--font-mono);
+    font-size: 14px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--fg-muted);
+  }
+  .package.featured h4 { color: var(--accent-ink); opacity: 0.7; }
+  .package h3 {
+    font-family: var(--font-display);
+    font-size: 36px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1;
+  }
+  .package-desc {
+    font-size: 15px;
+    color: var(--fg-muted);
+    line-height: 1.5;
+    max-width: 26ch;
+  }
+  .package.featured .package-desc { color: var(--accent-ink); opacity: 0.85; }
+  .package-features {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+    margin-top: auto;
+  }
+  .package.featured .package-features { border-top-color: rgba(11,12,14,0.25); }
+  .package-features li {
+    font-size: 14px;
+    padding-left: 20px;
+    position: relative;
+    color: var(--fg);
+    line-height: 1.4;
+  }
+  .package.featured .package-features li { color: var(--accent-ink); }
+  .package-features li::before {
+    content: "◆";
+    position: absolute; left: 0;
+    color: var(--accent);
+    font-size: 8px;
+    top: 6px;
+  }
+  .package.featured .package-features li::before { color: var(--accent-ink); }
+  .package-foot {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--fg-dim);
+    padding-top: 16px;
+    border-top: 1px solid var(--border);
+  }
+  .package.featured .package-foot {
+    color: var(--accent-ink);
+    opacity: 0.7;
+    border-top-color: rgba(11,12,14,0.25);
+  }
+
+  /* ============ Slide 09 — Schluss ============ */
+  .slide-end {
+    justify-content: center;
+    align-items: flex-start;
+    background:
+      radial-gradient(ellipse at 20% 80%, rgba(227,176,30,0.12), transparent 60%),
+      var(--bg);
+    gap: 48px;
+  }
+  .slide-end h2 {
+    font-size: 140px;
+    max-width: 20ch;
+  }
+  .slide-end h2 em {
+    font-style: normal;
+    color: var(--accent);
+  }
+  .slide-end-meta {
+    display: flex;
+    gap: 96px;
+    margin-top: 32px;
+  }
+  .slide-end-meta > div { display: flex; flex-direction: column; gap: 8px; }
+  .slide-end-meta h5 {
+    font-family: var(--font-mono);
+    font-size: 14px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--fg-dim);
+    font-weight: 500;
+  }
+  .slide-end-meta p {
+    font-family: var(--font-display);
+    font-size: 28px;
+    font-weight: 600;
+    color: var(--fg);
+    letter-spacing: -0.01em;
+  }
+  .slide-end-meta p em {
+    font-style: normal;
+    color: var(--accent);
+  }
+</style>
+</head>
+<body>
+
+<deck-stage width="1920" height="1080">
+
+  <!-- ========== 01 TITLE ========== -->
+  <section class="slide-title" data-label="Title">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+      <div class="slide-title-mark">Sculi Solutions · April 2026</div>
+      <div class="slide-title-mark">Pitch · Vertraulich</div>
+    </div>
+
+    <div>
+      <div class="eyebrow">Für EST Dresden GmbH</div>
+      <h1 style="margin-top: 32px;">
+        Neue Webseite.<br/>
+        Neue Bewerber.<br/>
+        <em>Neue Sichtbarkeit.</em>
+      </h1>
+    </div>
+
+    <div class="slide-title-meta">
+      <div class="slide-title-sub">
+        Ein integrierter Vorschlag: Website-Relaunch, SEO-Fundament, Meta-Recruiting und organischer Social-Aufbau — für die nächsten 12 Monate.
+      </div>
+      <div class="mono">01 / 09</div>
+    </div>
+  </section>
+
+  <!-- ========== 02 AGENDA ========== -->
+  <section class="slide-agenda" data-label="Agenda">
+    <div class="eyebrow">Agenda</div>
+    <h2 class="display" style="margin-top: 24px;">Worüber wir heute sprechen.</h2>
+
+    <div class="agenda-list">
+      <div class="agenda-num">01</div>
+      <div class="agenda-title">Status Quo</div>
+      <div class="agenda-meta">Die aktuelle Seite</div>
+
+      <div class="agenda-num">02</div>
+      <div class="agenda-title">Website-Vorschlag</div>
+      <div class="agenda-meta">Zwei Design-Varianten</div>
+
+      <div class="agenda-num">03</div>
+      <div class="agenda-title">SEO-Fundament</div>
+      <div class="agenda-meta">Sichtbar werden</div>
+
+      <div class="agenda-num">04</div>
+      <div class="agenda-title">Meta Recruiting Ads</div>
+      <div class="agenda-meta">Bewerber gewinnen</div>
+
+      <div class="agenda-num">05</div>
+      <div class="agenda-title">Organischer Social-Aufbau</div>
+      <div class="agenda-meta">Marke über Zeit</div>
+
+      <div class="agenda-num">06</div>
+      <div class="agenda-title">Pakete &amp; nächste Schritte</div>
+      <div class="agenda-meta">Zusammen­arbeit</div>
+    </div>
+    <div class="footer-bar">
+      <span>Sculi Solutions × EST Dresden</span><span>02 / 09</span>
+    </div>
+  </section>
+
+  <!-- ========== 03 STATUS QUO ========== -->
+  <section class="slide-status" data-label="Status Quo">
+    <div class="eyebrow">01 — Status Quo</div>
+    <h2 class="display" style="margin-top: 24px;">Viel Substanz.<br/>Kaum Sichtbarkeit.</h2>
+    <p class="lede" style="margin-top: 24px;">
+      EST Dresden hat 90 Jahre Ingenieurs­geschichte und ein starkes Produkt — aber die aktuelle Seite erzählt davon nur einen Bruchteil.
+    </p>
+
+    <div class="status-grid">
+      <div class="status-col current">
+        <h4>Heute</h4>
+        <h3>est-dresden.de</h3>
+        <ul>
+          <li>Nicht mobil-optimiert — mehr als 60% Ihrer Zielgruppe nutzt Smartphones</li>
+          <li>SEO-Potenzial liegt brach: keine eigenen Landingpages für Leistungen, schwache Meta-Daten</li>
+          <li>90 Jahre Tradition werden als Fußnote erwähnt, nicht emotional erzählt</li>
+          <li>Karriere-Seite verlinkt alle Stellen auf dieselbe Unterseite — kein Funnel</li>
+          <li>Keine Infrastruktur für Performance-Marketing (Pixel, Events, Conversions)</li>
+        </ul>
+      </div>
+      <div class="status-col future">
+        <h4>Unser Vorschlag</h4>
+        <h3>Eine Webseite, die Ihr Handwerk spiegelt.</h3>
+        <ul>
+          <li>Mobile-first, schnell, technisch sauber — Lighthouse-optimiert</li>
+          <li>Eigene Landingpages pro Leistung und pro Stelle — SEO &amp; Ads verlinken präzise</li>
+          <li>Tradition als Haltung: 90 Jahre sichtbar als Qualitäts­versprechen, nicht als Dekor</li>
+          <li>Bewerber-Funnel mit eigener Karriere­welt und Kurz­bewerbungs­formular</li>
+          <li>Meta Pixel, Conversion-Tracking und Analytics von Tag 1</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bar">
+      <span>Status Quo</span><span>03 / 09</span>
+    </div>
+  </section>
+
+  <!-- ========== 04 WEBSITE ========== -->
+  <section class="slide-website" data-label="Website-Vorschlag">
+    <div class="slide-website-head">
+      <div>
+        <div class="eyebrow">02 — Website-Vorschlag</div>
+        <h2 class="display" style="margin-top: 20px;">Zwei Richtungen.<br/>Ein Anspruch.</h2>
+      </div>
+      <p>
+        Wir zeigen heute einen klickbaren Prototyp in zwei Design-Varianten — beide mobil-optimiert, beide auf Ihren Ton abgestimmt.
+      </p>
+    </div>
+
+    <div class="website-preview">
+      <!-- Variante A -->
+      <a href="EST%20Dresden%20Website.html?v=industrial" target="_blank" class="preview-card preview-link" data-variant="industrial">
+        <div class="preview-card-bar">
+          <span></span><span></span><span></span>
+        </div>
+        <div class="preview-card-body">
+          <div style="display: flex; justify-content: space-between;">
+            <span class="preview-label">EST</span>
+            <span class="preview-label">Menu</span>
+          </div>
+          <div class="preview-hero">
+            <div class="preview-hero-text">
+              Präzision,<br/>die <em>nicht</em><br/>verhandelbar ist.
+            </div>
+          </div>
+          <div class="preview-blocks"><div></div><div></div></div>
+          <div class="preview-label" style="text-align: center;">— Industrial Dark —</div>
+        </div>
+        <div class="preview-caption">
+          <span>Variante A</span><em>Industrial →</em>
+        </div>
+      </a>
+
+      <!-- Variante B -->
+      <a href="EST%20Dresden%20Website.html?v=heritage" target="_blank" class="preview-card preview-link" data-variant="heritage">
+        <div class="preview-card-bar">
+          <span></span><span></span><span></span>
+        </div>
+        <div class="preview-card-body" style="background: #f5f1ea; color: #1a1612;">
+          <div style="display: flex; justify-content: space-between;">
+            <span class="preview-label" style="color: #8a7e66;">EST</span>
+            <span class="preview-label" style="color: #8a7e66;">Menu</span>
+          </div>
+          <div class="preview-hero" style="background: #ece6db; border-color: #d4ccbc;">
+            <div class="preview-hero-text" style="color: #1a1612;">
+              Handwerk,<br/>das seit <em style="color: #b23a1a;">1936</em><br/>hält.
+            </div>
+          </div>
+          <div class="preview-blocks">
+            <div style="background: #e3dccc; border-color: #d4ccbc;"></div>
+            <div style="background: #e3dccc; border-color: #d4ccbc;"></div>
+          </div>
+          <div class="preview-label" style="text-align: center; color: #8a7e66;">— Heritage Bold —</div>
+        </div>
+        <div class="preview-caption">
+          <span>Variante B</span><em>Heritage →</em>
+        </div>
+      </a>
+
+      <!-- Mobile preview -->
+      <div class="preview-card" style="aspect-ratio: 3/4; background: var(--bg); display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 32px; gap: 20px;">
+        <div class="preview-label" style="color: var(--accent);">+ Mobil-optimiert</div>
+        <h3 class="display" style="font-size: 28px; text-align: center; line-height: 1.1;">
+          Jede<br/>Seite.<br/>Jeder<br/>Breakpoint.
+        </h3>
+        <div style="display: flex; gap: 6px; margin-top: 8px;">
+          <div style="width: 24px; height: 40px; border: 1px solid var(--border-strong); border-radius: 3px;"></div>
+          <div style="width: 40px; height: 30px; border: 1px solid var(--border-strong); border-radius: 3px;"></div>
+          <div style="width: 60px; height: 40px; border: 1px solid var(--border-strong); border-radius: 3px;"></div>
+        </div>
+        <div class="preview-label" style="color: var(--fg-dim); text-align: center; max-width: 20ch; line-height: 1.5;">
+          Home · Leistungen · Karriere · Unternehmen — alle mobil durchdesigned
+        </div>
+      </div>
+    </div>
+
+    <div class="slide-website-foot">
+      <span>→ Im Anschluss: Live-Prototyp auf <strong>sculi-solutions.de/est</strong></span>
+      <span>04 / 09</span>
+    </div>
+  </section>
+
+  <!-- ========== 05 SEO ========== -->
+  <section class="slide-seo" data-label="SEO">
+    <div class="eyebrow">03 — SEO-Fundament</div>
+    <h2 class="display" style="margin-top: 20px;">Gefunden werden,<br/>wenn es zählt.</h2>
+
+    <div class="seo-grid">
+      <div class="seo-main">
+        <p class="lede" style="font-size: 20px;">
+          Vier Hebel, die wir im ersten Quartal ziehen — technisch, inhaltlich und strukturell.
+        </p>
+
+        <div class="seo-pillars">
+          <div class="seo-pillar">
+            <div class="seo-pillar-num">01 — Technisch</div>
+            <div class="seo-pillar-title">Technik-Audit</div>
+            <div class="seo-pillar-desc">Ladezeiten, Core Web Vitals, Sitemap, robots.txt, strukturierte Daten — alles sauber von Anfang an.</div>
+          </div>
+          <div class="seo-pillar">
+            <div class="seo-pillar-num">02 — Struktur</div>
+            <div class="seo-pillar-title">Landingpages</div>
+            <div class="seo-pillar-desc">Jede Leistung bekommt eine eigene optimierte Seite — statt einer Sammelseite mit zu vielen Themen.</div>
+          </div>
+          <div class="seo-pillar">
+            <div class="seo-pillar-num">03 — Content</div>
+            <div class="seo-pillar-title">Fachbeiträge</div>
+            <div class="seo-pillar-desc">Vier redaktionelle Beiträge pro Quartal zu Kernthemen — von Ihren Ingenieuren, von uns redigiert.</div>
+          </div>
+          <div class="seo-pillar">
+            <div class="seo-pillar-num">04 — Lokal</div>
+            <div class="seo-pillar-title">Google Business</div>
+            <div class="seo-pillar-desc">Profil-Optimierung, regionale Keywords, Bewertungen — Dresden und Sachsen als klarer Marktanker.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="seo-side">
+        <h4>Keyword-Beispiele</h4>
+        <div class="keyword-list">
+          <div class="keyword-row">
+            <span class="kw">Schweißanlage Hersteller Dresden</span>
+            <span class="badge">Fokus</span>
+          </div>
+          <div class="keyword-row">
+            <span class="kw">Widerstands­schweißen Sachsen</span>
+            <span class="badge">Fokus</span>
+          </div>
+          <div class="keyword-row">
+            <span class="kw">Sondermaschinen­bau Schweißtechnik</span>
+            <span class="badge">Nische</span>
+          </div>
+          <div class="keyword-row">
+            <span class="kw">Roboter­zelle schlüssel­fertig</span>
+            <span class="badge">Nische</span>
+          </div>
+          <div class="keyword-row">
+            <span class="kw">Buckelschweiß­maschine</span>
+            <span class="badge">Long-Tail</span>
+          </div>
+          <div class="keyword-row">
+            <span class="kw">Retrofit Schweißanlage</span>
+            <span class="badge">Long-Tail</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bar">
+      <span>SEO-Fundament</span><span>05 / 09</span>
+    </div>
+  </section>
+
+  <!-- ========== 06 META ADS ========== -->
+  <section class="slide-meta" data-label="Meta Ads">
+    <div class="eyebrow">04 — Meta Recruiting Ads</div>
+    <h2 class="display" style="margin-top: 20px;">Bewerber erreichen,<br/>bevor sie suchen.</h2>
+
+    <div class="meta-layout">
+      <div class="meta-strategy">
+        <h3>Facharbeiter suchen nicht auf Google. Sie scrollen durch Instagram.</h3>
+        <p style="font-size: 18px; color: var(--fg-muted); line-height: 1.55; max-width: 42ch;">
+          Meta Ads erreichen Industriemechaniker, Schweißer und Monteure genau dort, wo sie ohnehin sind — und zeigen, dass EST mehr ist als ein Logo am Ortseingang.
+        </p>
+
+        <div class="meta-funnel">
+          <div class="funnel-step">
+            <div class="funnel-step-num">01</div>
+            <div>
+              <div class="funnel-step-title">Zielgruppen-Setup</div>
+              <div class="funnel-step-desc">Custom Audience: Dresden + 50 km, Metallhandwerk, Techniker, Mechatroniker. Look-alikes nach drei Wochen.</div>
+            </div>
+          </div>
+          <div class="funnel-step">
+            <div class="funnel-step-num">02</div>
+            <div>
+              <div class="funnel-step-title">Video-Creatives</div>
+              <div class="funnel-step-desc">3 × 15-Sekunden aus Ihrer Halle — authentisch statt Stockmaterial. Wir produzieren an einem Drehtag vor Ort.</div>
+            </div>
+          </div>
+          <div class="funnel-step">
+            <div class="funnel-step-num">03</div>
+            <div>
+              <div class="funnel-step-title">Landingpage &amp; Kurz­bewerbung</div>
+              <div class="funnel-step-desc">Eigene Landingpage pro Stelle. Bewerbung in 3 Schritten — ohne Anschreiben-Pflicht.</div>
+            </div>
+          </div>
+          <div class="funnel-step">
+            <div class="funnel-step-num">04</div>
+            <div>
+              <div class="funnel-step-title">Wöchentliches Reporting</div>
+              <div class="funnel-step-desc">Klicks, Bewerbungen, Qualität — transparent im Dashboard. Retargeting wird monatlich nachjustiert.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Instagram Ad Mockup -->
+      <div style="display: flex; flex-direction: column; gap: 12px; align-items: center;">
+        <div class="ad-phone">
+          <div class="ad-header">
+            <div class="ad-avatar">E</div>
+            <div class="ad-handle-stack">
+              <span class="ad-handle">est_dresden</span>
+              <span class="ad-sponsored">Gesponsert</span>
+            </div>
+            <div class="ad-more">⋯</div>
+          </div>
+          <div class="ad-visual">
+            <div class="ad-visual-top">
+              <div class="ad-visual-kicker">Karriere · Dresden-Cotta</div>
+              <div class="ad-visual-headline">
+                Schweißer? Mechaniker?<br/>
+                Kommen Sie raus aus der Leiharbeit.
+              </div>
+            </div>
+            <div class="ad-visual-bottom">
+              <div class="ad-visual-sub">
+                Unbefristet. Tariforientiert. 30 Tage Urlaub. Keine Schichten am Wochenende.
+              </div>
+              <div class="ad-visual-chip">Bewerben in 3 Minuten →</div>
+            </div>
+          </div>
+          <div class="ad-cta">
+            <div class="ad-cta-left">
+              <span class="ad-cta-title">est-dresden.de</span>
+              <span class="ad-cta-desc">Jetzt Stellen entdecken</span>
+            </div>
+            <div class="ad-cta-btn">Mehr erfahren</div>
+          </div>
+        </div>
+        <div class="mono" style="text-align: center;">Creative-Beispiel · IG Reels</div>
+      </div>
+    </div>
+
+    <div class="footer-bar">
+      <span>Meta Recruiting</span><span>06 / 09</span>
+    </div>
+  </section>
+
+  <!-- ========== 07 SOCIAL ========== -->
+  <section class="slide-social" data-label="Organisch Social">
+    <div class="eyebrow">05 — Organischer Social-Aufbau</div>
+    <h2 class="display" style="margin-top: 20px;">Marke, die<br/>über Monate wächst.</h2>
+    <p class="lede" style="font-size: 20px; margin-top: 16px;">
+      Parallel zu den bezahlten Kampagnen bauen wir Ihre organische Präsenz auf — mit einer klaren Rollen­verteilung zwischen den Kanälen.
+    </p>
+
+    <div class="social-grid">
+      <div class="social-col">
+        <h4>Instagram</h4>
+        <h3>Die Halle zeigen.</h3>
+        <p>Reels aus der Produktion, Einblicke in Projekte, Teammitglieder. Authentisch, ohne Filter-Ästhetik. Zielgruppe: Facharbeiter, Azubis, Quereinsteiger.</p>
+        <ul>
+          <li>2 Reels pro Woche</li>
+          <li>Stories aus dem Alltag</li>
+          <li>Behind-the-Scenes</li>
+        </ul>
+      </div>
+      <div class="social-col">
+        <h4>LinkedIn</h4>
+        <h3>Die Expertise zeigen.</h3>
+        <p>Technische Beiträge, Referenz­projekte, Employer-Branding für Ingenieure. Zielgruppe: Einkäufer, Werksleiter, Ingenieurs-Nachwuchs.</p>
+        <ul>
+          <li>1 Fachbeitrag pro Woche</li>
+          <li>Projekt-Spotlights</li>
+          <li>Geschäftsführer als Stimme</li>
+        </ul>
+      </div>
+      <div class="social-col">
+        <h4>YouTube / TikTok</h4>
+        <h3>Das Handwerk zeigen.</h3>
+        <p>Längere Anlagen-Videos auf YouTube (SEO-Nebeneffekt), kurze Schweiß-Clips auf TikTok für die junge Zielgruppe. Kein Tanzen, nur Funken.</p>
+        <ul>
+          <li>1 Anlagen-Feature pro Monat</li>
+          <li>TikTok: 2 Shorts pro Woche</li>
+          <li>Wiederverwertung der Reels</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bar">
+      <span>Organisch Social</span><span>07 / 09</span>
+    </div>
+  </section>
+
+  <!-- ========== 08 PAKETE ========== -->
+  <section class="slide-packages" data-label="Pakete">
+    <div class="eyebrow">06 — Pakete</div>
+    <h2 class="display" style="margin-top: 20px;">Drei Wege.<br/>Ein Ziel.</h2>
+    <p class="lede" style="font-size: 20px; margin-top: 16px;">
+      Wir starten mit dem Website-Relaunch als Fundament — und bauen darauf stufenweise auf.
+    </p>
+
+    <div class="package-grid">
+      <div class="package">
+        <h4>Paket 01</h4>
+        <h3>Fundament</h3>
+        <div class="package-desc">Einmaliger Website-Relaunch inklusive SEO-Grundlagen und Tracking-Setup.</div>
+        <ul class="package-features">
+          <li>Neue Webseite — 4 Kern­seiten, mobil-optimiert</li>
+          <li>Technisches SEO-Audit &amp; Setup</li>
+          <li>Google Business Profil</li>
+          <li>Meta Pixel &amp; Conversion-Tracking</li>
+          <li>Basis-Schulung für Ihr Team</li>
+        </ul>
+        <div class="package-foot">Einmal­projekt · 8–10 Wochen</div>
+      </div>
+
+      <div class="package featured">
+        <div class="package-badge">Empfohlen</div>
+        <h4>Paket 02</h4>
+        <h3>Wachstum</h3>
+        <div class="package-desc">Fundament plus laufende Performance-Betreuung für SEO und Meta Ads.</div>
+        <ul class="package-features">
+          <li>Alles aus Paket 01</li>
+          <li>Meta Recruiting-Kampagnen</li>
+          <li>Creative-Produktion: 1 Drehtag / Quartal</li>
+          <li>Laufende SEO-Betreuung &amp; Content</li>
+          <li>Monatliches Reporting &amp; Strategie-Call</li>
+        </ul>
+        <div class="package-foot">12-Monats­partnerschaft</div>
+      </div>
+
+      <div class="package">
+        <h4>Paket 03</h4>
+        <h3>Voll­bild</h3>
+        <div class="package-desc">Wachstum plus kompletter organischer Social-Aufbau auf allen relevanten Kanälen.</div>
+        <ul class="package-features">
+          <li>Alles aus Paket 02</li>
+          <li>Instagram &amp; LinkedIn Redaktion</li>
+          <li>YouTube / TikTok Content-Pipeline</li>
+          <li>Community-Management</li>
+          <li>Wöchentlicher Jour fixe</li>
+        </ul>
+        <div class="package-foot">12-Monats­partnerschaft</div>
+      </div>
+    </div>
+
+    <div class="footer-bar">
+      <span>Pakete</span><span>08 / 09</span>
+    </div>
+  </section>
+
+  <!-- ========== 09 END ========== -->
+  <section class="slide-end" data-label="Nächste Schritte">
+    <div class="eyebrow">Nächste Schritte</div>
+    <h2 class="display">
+      Bauen wir<br/>
+      gemeinsam<br/>
+      <em>weiter.</em>
+    </h2>
+
+    <div class="slide-end-meta">
+      <div>
+        <h5>Vorschlag</h5>
+        <p>Paket 02 · <em>Start Mai 2026</em></p>
+      </div>
+      <div>
+        <h5>Kick-off</h5>
+        <p>2 Wochen nach Auftrag</p>
+      </div>
+      <div>
+        <h5>Launch</h5>
+        <p>8 Wochen · <em>Q3 2026</em></p>
+      </div>
+    </div>
+
+    <div class="footer-bar" style="position: static; padding-top: 48px; margin-top: auto;">
+      <span>Sculi Solutions · hallo@sculi-solutions.de</span><span>09 / 09</span>
+    </div>
+  </section>
+
+</deck-stage>
+
+<script src="deck-stage.js"></script>
+</body>
+</html>
