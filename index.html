@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EST Dresden Pitch — Sculi Solutions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0b0c0e; --bg-2: #121418; --surface: #16191e;
+    --border: #262a31; --border-strong: #3a3f48;
+    --fg: #f4f4f2; --fg-muted: #a6abb3; --fg-dim: #6e7480;
+    --accent: #e3b01e;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: "Inter", sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  .wrap { max-width: 1200px; margin: 0 auto; padding: 48px 32px; width: 100%; }
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 24px;
+    margin-bottom: 64px;
+  }
+  .logo {
+    display: flex; align-items: center; gap: 10px;
+    font-family: "Space Grotesk", sans-serif;
+    font-weight: 600; font-size: 18px;
+  }
+  .logo-mark {
+    width: 32px; height: 32px;
+    background: var(--accent); color: var(--bg);
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: 13px;
+  }
+  .mono {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 11px; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--fg-dim);
+  }
+  .eyebrow {
+    display: inline-flex; align-items: center; gap: 12px;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 12px; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--fg-muted);
+    margin-bottom: 20px;
+  }
+  .eyebrow::before { content: ""; width: 28px; height: 1px; background: var(--accent); }
+  h1 {
+    font-family: "Space Grotesk", sans-serif;
+    font-weight: 600;
+    font-size: clamp(48px, 7vw, 84px);
+    letter-spacing: -0.02em;
+    line-height: 0.98;
+    margin-bottom: 24px;
+  }
+  h1 em { font-style: normal; color: var(--accent); }
+  .lede {
+    font-size: 20px; color: var(--fg-muted);
+    max-width: 56ch; line-height: 1.5;
+    margin-bottom: 64px;
+  }
+  .cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+  .card {
+    background: var(--surface);
+    padding: 48px 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    text-decoration: none;
+    color: inherit;
+    transition: background 0.2s;
+    min-height: 360px;
+  }
+  .card:hover { background: #1a1d22; }
+  .card:hover .card-arrow { color: var(--accent); transform: translateX(4px); }
+  .card-num {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 11px; letter-spacing: 0.14em; color: var(--accent);
+  }
+  .card-title {
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 36px; font-weight: 600;
+    letter-spacing: -0.02em; line-height: 1.05;
+  }
+  .card-desc { color: var(--fg-muted); font-size: 15px; line-height: 1.55; }
+  .card-foot {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-top: auto; padding-top: 24px;
+    border-top: 1px solid var(--border);
+  }
+  .card-meta { font-family: "JetBrains Mono", monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--fg-dim); }
+  .card-arrow {
+    color: var(--fg-dim);
+    font-size: 28px;
+    transition: all 0.2s;
+    font-family: "Space Grotesk", sans-serif;
+  }
+  @media (max-width: 768px) { .cards { grid-template-columns: 1fr; } }
+  footer {
+    margin-top: auto;
+    padding: 32px;
+    border-top: 1px solid var(--border);
+    text-align: center;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 11px; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--fg-dim);
+  }
+  .note {
+    margin-top: 48px;
+    padding: 24px 32px;
+    border: 1px solid var(--border);
+    background: var(--bg-2);
+    display: flex;
+    gap: 24px;
+    align-items: start;
+  }
+  .note-badge {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--accent);
+    border: 1px solid var(--accent);
+    padding: 4px 8px;
+    white-space: nowrap;
+  }
+  .note-text {
+    font-size: 14px;
+    color: var(--fg-muted);
+    line-height: 1.55;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="logo">
+      <div class="logo-mark">S</div>
+      <span>Sculi Solutions</span>
+    </div>
+    <div class="mono">Pitch · EST Dresden · April 2026</div>
+  </header>
+
+  <div class="eyebrow">Pitch-Übersicht</div>
+  <h1>Zwei Artefakte.<br/>Ein <em>Vorschlag.</em></h1>
+  <p class="lede">
+    Für Ihren Termin morgen bei EST Dresden haben wir zwei Dinge vorbereitet: einen klickbaren Website-Prototyp in zwei Design-Varianten — und ein kompaktes Pitch-Deck für den Strategie-Teil zu SEO, Meta-Recruiting und organischem Social-Aufbau.
+  </p>
+
+  <div class="cards">
+    <a href="prototyp/EST%20Dresden%20Website.html" class="card">
+      <div class="card-num">01 — Hauptshow</div>
+      <div class="card-title">Website-Prototyp</div>
+      <div class="card-desc">
+        Mehrseitiger, klickbarer Entwurf für EST Dresden: Home, Leistungen, Karriere, Unternehmen. Zwei Design-Varianten über den Tweaks-Schalter umschaltbar: Industrial Dark und Heritage Bold.
+      </div>
+      <div class="card-foot">
+        <span class="card-meta">4 Seiten · 2 Varianten</span>
+        <span class="card-arrow">→</span>
+      </div>
+    </a>
+
+    <a href="prototyp/Pitch%20Deck.html" class="card">
+      <div class="card-num">02 — Strategie</div>
+      <div class="card-title">Pitch-Deck</div>
+      <div class="card-desc">
+        9 Slides: Status Quo der aktuellen Seite, Website-Vorschlag, SEO-Fundament, Meta Recruiting Ads (inkl. Creative-Mockup), organischer Social-Aufbau, Pakete und nächste Schritte.
+      </div>
+      <div class="card-foot">
+        <span class="card-meta">9 Slides · 1920×1080</span>
+        <span class="card-arrow">→</span>
+      </div>
+    </a>
+  </div>
+
+  <div class="note">
+    <div class="note-badge">Tipp</div>
+    <div class="note-text">
+      Im Prototyp: rechts unten erscheint der Tweaks-Panel (über den Tweaks-Schalter in der Toolbar), mit dem Sie zwischen Industrial und Heritage wechseln und direkt zu den Unterseiten springen können. Im Deck: Pfeiltasten für Navigation, „R" für Reset.
+    </div>
+  </div>
+</div>
+
+<footer>
+  Sculi Solutions · hallo@sculi-solutions.de
+</footer>
+</body>
+</html>
